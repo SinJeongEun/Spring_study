@@ -7,6 +7,8 @@
    => 본질을 건드리지 않고 외부에서 내가 사용하는 객체를 주입시킨다.
 
 
-
-- [**IOC**](https://github.com/SinJeongEun/Spring_study/tree/master/java/com/example/ioc)
+- IOC
+  - [**Encoderdml 단일 bean 사용**](https://github.com/SinJeongEun/Spring_study/tree/master/java/com/example/ioc)
+  - [**Encoderdml 여러 bean 사용**](https://github.com/SinJeongEun/Spring_study/tree/master/ioc2) 
+  - 
 - AOP
