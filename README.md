@@ -7,4 +7,6 @@
    => 본질을 건드리지 않고 외부에서 내가 사용하는 객체를 주입시킨다.
 
 
+
+- [**IOC**](https://github.com/SinJeongEun/Spring_study/tree/master/java/com/example/ioc)
 - AOP
