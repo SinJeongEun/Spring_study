@@ -1,5 +1,5 @@
 이전과 다르게 Encoder 클래스의 bean 등록을 하지 않음 (@Component 제거함)
-[**메인파일에서 빈을 직접 등록 함**]()
+[**메인파일에서 빈을 직접 등록 함**](https://github.com/SinJeongEun/Spring_study/blob/master/ioc2/IocApplication.java)
 
 
 - @Configuration : 하나의 클래스에서 여러 빈을 등록한다는 의미
