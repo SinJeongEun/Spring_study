@@ -14,7 +14,7 @@ ioc는 스프링 컨테이너에서 관리하므로
   Encoder encoder = context.getBean(Encoder.class);
   ```
 
-- (**한가지 Component만 가능한 Encoder 코드**)(https://github.com/SinJeongEun/Spring_study/blob/master/java/com/example/ioc/Encoder.java)
+- [**한가지 Component만 가능한 Encoder 코드**](https://github.com/SinJeongEun/Spring_study/blob/master/java/com/example/ioc/Encoder.java)
 
 
 - 빈을 주입받을 수 있는 곳3
