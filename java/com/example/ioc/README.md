@@ -1,6 +1,5 @@
 ioc는 스프링 컨테이너에서 관리하므로
-프로젝트 자체르 스프링으로 만들어야 됨
-new 객체생성,생명주기
+프로젝트 자체를 스프링으로 만들어야 됨
 
 - ioc
   클래스 위에 @Component -> bean으로 등록된다.  @Component("cName") 으로 bean의 name 등록 가능
@@ -15,7 +14,7 @@ new 객체생성,생명주기
   Encoder encoder = context.getBean(Encoder.class);
   ```
 
-- (**한가지 Component만 가능한 Encoder 코드**)()
+- (**한가지 Component만 가능한 Encoder 코드**)(https://github.com/SinJeongEun/Spring_study/blob/master/java/com/example/ioc/Encoder.java)
 
 
 - 빈을 주입받을 수 있는 곳3
