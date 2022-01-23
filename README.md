@@ -11,4 +11,6 @@
   - [**Encoderdml 단일 bean 사용**](https://github.com/SinJeongEun/Spring_study/tree/master/java/com/example/ioc)
   - [**Encoderdml 여러 bean 사용**](https://github.com/SinJeongEun/Spring_study/tree/master/ioc2) 
   - 
-- [**AOP**](https://github.com/SinJeongEun/Spring_study/tree/master/aop)
+- AOP
+  - [**AOP 사용**](https://github.com/SinJeongEun/Spring_study/tree/master/aop)
+  - [**custom_annotation**](https://github.com/SinJeongEun/Spring_study/tree/master/aop2)
