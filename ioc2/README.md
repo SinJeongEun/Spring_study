@@ -21,7 +21,7 @@ class AppConfig{
 - @Configuration : 하나의 클래스에서 여러 빈을 등록한다는 의미
 - @Bean : 코드에서 new가 아닌 @Bean 로 미리 bean 등록
 
-스프링에서 관리하는 객체 == bean
-bean이 관리되는 장소 == 스프링 컨테이너
+스프링에서 관리하는 객체 == bean <br>
+bean이 관리되는 장소 == 스프링 컨테이너 <br>
 스프링 컨테이너가 객체 제어의 관리를 가져갔으므로 == 제어의 역전 == ioc
 
