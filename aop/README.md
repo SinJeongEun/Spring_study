@@ -19,7 +19,8 @@ controller 전후에 적용시 디버깅 용이
 
 
 <br>
-### custom annotation
+### custom annotation 
+<br>
 // filter , interceptor에서의 변환은 tomcat 에서 body를 한 번 읽으면 더이상 읽을 수 없도록 막아둠 . => 변환이 어려움 <br>
 => aop 구간은 이미 filter, interceptor을 지나서 값 자체가 "객체화"됐으므로 값 변환이 가능 (=> 암호화된 데이터를 서비스 단에서 코드로 복호화가 아닌 aop단에서 복호화 가능)
 => 반복적으로 사용되는 로직을 어노테이션으로 대체함으로써 서비스 로직이 분명해짐
