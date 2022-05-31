@@ -15,6 +15,6 @@
   - [**AOP 사용**](https://github.com/SinJeongEun/Spring_study/tree/master/aop)
   - [**custom_annotation**](https://github.com/SinJeongEun/Spring_study/tree/master/aop2)
 
-
+-[**Exception Handler**](https://github.com/SinJeongEun/Spring_study/tree/master/exceptionHandler)
 
 - [**JPA**](https://github.com/SinJeongEun/Spring_study/tree/master/bookmanager)
