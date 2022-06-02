@@ -3,10 +3,7 @@ package com.jpa.bookmanager.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -15,10 +12,10 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "users")
+@Table(name = "myUser")
 public class User {
     @Id //User 테이블의 pk임을 선언
-    @GeneratedValue // 자동으로 증가하는 값이다.
+    @GeneratedValue// 자동으로 증가하는 값이다.
     private Long id;
 
     @NonNull
@@ -29,7 +26,7 @@ public class User {
 
     private LocalDateTime createAt;
 
-    private LocalDateTime updatedAt;
+    private LocalDateTime updateAt;
 
 
 }
