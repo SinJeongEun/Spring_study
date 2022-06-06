@@ -111,10 +111,15 @@ class UserRepositoryTest {
 
     @Test
     void pagingAndSort(){
-        System.out.println("findTopByNameOrderByIdDesc : " + userRepository.findTopByNameOrderByIdDesc("martin"));
-        System.out.println("findTopByNameOrderByIdDescIdAsc : " + userRepository.findTopByNameOrderByIdDescIdAsc("martin"));
-        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"))));
-        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
+//        System.out.println("findTopByNameOrderByIdDesc : " + userRepository.findTopByNameOrderByIdDesc("martin"));
+//        System.out.println("findTopByNameOrderByIdDescIdAsc : " + userRepository.findTopByNameOrderByIdDescIdAsc("martin"));
+//        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"))));
+//        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
+
+        //0페이지는 첫번쨰 페이지를 나타낸다. 아래와 같이 정렬할 때 가장 먼저 나오는 것은 id=5의 martin이이므로 0페이지에는 id=5인 martin이 나온다.
+        System.out.println("findByNameWithPaging : " + userRepository.findByName("martin",PageRequest.of(0,1,Sort.by(Sort.Order.desc("id")))).getContent());
+        //1페이지는 id=1 인 martin이 나온다. .getContent()로  객체 내용을 볼 수 있다.
+        System.out.println("findByNameWithPaging : " + userRepository.findByName("martin",PageRequest.of(1,1,Sort.by(Sort.Order.desc("id")))).getContent());
 
     }
 }
