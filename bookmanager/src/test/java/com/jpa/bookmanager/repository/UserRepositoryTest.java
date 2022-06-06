@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.*;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
@@ -64,7 +65,7 @@ class UserRepositoryTest {
         System.out.println("numberOfElements : "+ users.getNumberOfElements());
         System.out.println("size : " + users.getSize());
     }
-    
+
     //query by example : entity를 example로 만들고, matcher를 선언하여, 필요한 쿼리들을 만드는 방법이다.
     @Test
     void qbe(){
@@ -75,5 +76,45 @@ class UserRepositoryTest {
         Example<User> example = Example.of(new User("ma","nate.com"),matcher); // 이 객체는 probe로 실제 entityㄱ ㅏ아니다.
         //email 이 nate.come 으로 끝나느 항목을 찾는다.
         userRepository.findAll(example).forEach(System.out::println);
+    }
+
+    @Test
+    void queryMethod(){
+        System.out.println("findByName : "+ userRepository.findByName("lisa"));
+        System.out.println("findByEmail : "+ userRepository.findByEmail("martin@naver.com"));
+        System.out.println("getByEmail : "+ userRepository.getByEmail("martin@naver.com"));
+        System.out.println("readByEmail : "+ userRepository.readByEmail("martin@naver.com"));
+        System.out.println("queryByEmail : "+ userRepository.queryByEmail("martin@naver.com"));
+        System.out.println("searchByEmail : "+ userRepository.searchByEmail("martin@naver.com"));
+        System.out.println("streamByEmail : "+ userRepository.streamByEmail("martin@naver.com"));
+
+        System.out.println("findFirst1ByName : "+ userRepository.findFirst1ByName("martin"));
+        System.out.println("findFirst2ByName : "+ userRepository.findFirst2ByName("martin")); //martin 의 이름을 가진 객체 2개를 가져온다. : limit 사용됨
+        System.out.println("findTop1ByName : "+ userRepository.findTop1ByName("martin"));
+
+        System.out.println("findByNameAndEmail : " + userRepository.findByNameAndEmail("martin","martin@naver.com"));
+        System.out.println("findByEmailOrName : " + userRepository.findByEmailOrName("dennis","martin@naver.com"));
+        System.out.println("findByCreateAtAfter : " + userRepository.findByCreateAtAfter(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findByIdAfter : " + userRepository.findByIdAfter(1L)); // before, after은 기준값을 포함하지 않는다.
+        System.out.println("findByIdAfter : " + userRepository.findByIdAfter(1L));
+        System.out.println("findByCreateAtGreaterThan : " + userRepository.findByCreateAtGreaterThan(LocalDateTime.now())); //after과 동일
+        System.out.println("findByCreateAtGreaterThanEqual : " + userRepository.findByCreateAtGreaterThanEqual(LocalDateTime.now().minusDays(1L))); // where >= , 기준값 포함
+        System.out.println("findByCreateAtBetween : " + userRepository.findByCreateAtBetween(LocalDateTime.now().minusDays(1L),LocalDateTime.now().plusDays(1L)));  // where >= , 기준값 포함
+        System.out.println("findByIdBetween : " + userRepository.findByIdBetween(1L,3L));
+        System.out.println("findByIdIsNotNull : " + userRepository.findByIdIsNull());
+        System.out.println("findByNameIn : " + userRepository.findByNameIn(Lists.newArrayList("martin","lisa")));
+        System.out.println("findByNameStartingWith : " + userRepository.findByNameStartingWith("ma"));
+        System.out.println("findByNameEndingWith : " + userRepository.findByNameEndingWith("tin"));
+        System.out.println("findByNameContains : " + userRepository.findByNameContains("rt"));
+        System.out.println("findByNameLike : " + userRepository.findByNameLike("mar%"));
+    }
+
+    @Test
+    void pagingAndSort(){
+        System.out.println("findTopByNameOrderByIdDesc : " + userRepository.findTopByNameOrderByIdDesc("martin"));
+        System.out.println("findTopByNameOrderByIdDescIdAsc : " + userRepository.findTopByNameOrderByIdDescIdAsc("martin"));
+        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"))));
+        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
+
     }
 }
