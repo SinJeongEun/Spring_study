@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "myUser")
+@Table(name = "myUser", indexes = {@Index(columnList = "name")}, uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User {
     @Id //User 테이블의 pk임을 선언
     @GeneratedValue// 자동으로 증가하는 값이다.
@@ -24,8 +24,10 @@ public class User {
     @NonNull
     private String email;
 
+    @Column(updatable = false)
     private LocalDateTime createAt;
 
+    @Column(insertable = false)
     private LocalDateTime updateAt;
 
 
