@@ -21,11 +21,10 @@ class UserRepositoryTest {
 
     @Test
     void crud(){
-
-//        List<User>users1 = userRepository.findAll();
-//        List<User>users2 = userRepository.findAll(Sort.by(Sort.Direction.DESC,"name"));  // 이름의 내림차순 정렬
-//        List<User>users = userRepository.findAllById(Lists.newArrayList(1L,3L,5L)); // assert에서 제공하는 테스트 라이브러리를 통해 원하는 값들로 구성된 list 생성이 가능하다.
-//        users.forEach(System.out::println);
+        List<User>users1 = userRepository.findAll();
+        List<User>users2 = userRepository.findAll(Sort.by(Sort.Direction.DESC,"name"));  // 이름의 내림차순 정렬
+        List<User>users = userRepository.findAllById(Lists.newArrayList(1L,3L,5L)); // assert에서 제공하는 테스트 라이브러리를 통해 원하는 값들로 구성된 list 생성이 가능하다.
+        users.forEach(System.out::println);
 
         User user1 = new User("jack","jack@naver.com");
         userRepository.save(user1);
@@ -114,15 +113,37 @@ class UserRepositoryTest {
 
     @Test
     void pagingAndSort(){
-//        System.out.println("findTopByNameOrderByIdDesc : " + userRepository.findTopByNameOrderByIdDesc("martin"));
-//        System.out.println("findTopByNameOrderByIdDescIdAsc : " + userRepository.findTopByNameOrderByIdDescIdAsc("martin"));
-//        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"))));
-//        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
+        System.out.println("findTopByNameOrderByIdDesc : " + userRepository.findTopByNameOrderByIdDesc("martin"));
+        System.out.println("findTopByNameOrderByIdDescIdAsc : " + userRepository.findTopByNameOrderByIdDescIdAsc("martin"));
+        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"))));
+        System.out.println("findFirstByName :  " + userRepository.findFirstByName("martin",Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
 
         //0페이지는 첫번쨰 페이지를 나타낸다. 아래와 같이 정렬할 때 가장 먼저 나오는 것은 id=5의 martin이이므로 0페이지에는 id=5인 martin이 나온다.
         System.out.println("findByNameWithPaging : " + userRepository.findByName("martin",PageRequest.of(0,1,Sort.by(Sort.Order.desc("id")))).getContent());
         //1페이지는 id=1 인 martin이 나온다. .getContent()로  객체 내용을 볼 수 있다.
         System.out.println("findByNameWithPaging : " + userRepository.findByName("martin",PageRequest.of(1,1,Sort.by(Sort.Order.desc("id")))).getContent());
 
+    }
+
+    @Test
+    void prePersistTest(){
+        User user = new User();
+        user.setEmail("lisa2@gmail.com");
+        user.setName("lisa2");
+        //prePersist 로 createAt, updateAt 값을
+        userRepository.save(user);
+        System.out.println(userRepository.findByName("lisa2"));
+    }
+
+    @Test
+    void preUpdateTest(){
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        System.out.println("before : " + user);
+
+        user.setName("lisa2");
+        //preUpdate로 자동적으로 updateAt 값이 갱신됨을 확인 가능하다.
+        userRepository.save(user);
+
+        System.out.println(userRepository.findById(1L).orElseThrow(RuntimeException::new));
     }
 }
