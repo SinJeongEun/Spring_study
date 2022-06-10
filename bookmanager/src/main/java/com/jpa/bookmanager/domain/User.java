@@ -21,9 +21,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "myUser", indexes = {@Index(columnList = "name")}, uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 @EntityListeners(value = {UserEntityListener.class})
-public class User extends BaseEntity implements Auditable {
+public class User extends BaseEntity{
     @Id //User 테이블의 pk임을 선언
-    @GeneratedValue// 자동으로 증가하는 값이다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// 자동으로 증가하는 값이다.
     private Long id;
 
     @NonNull
