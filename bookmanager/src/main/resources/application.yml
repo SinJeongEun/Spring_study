@@ -4,6 +4,8 @@ spring:
       enabled: true
 
   jpa:
+#    hibernate:
+#      ddl-auto: create
     defer-datasource-initialization: true
     show-sql: true
     properties:

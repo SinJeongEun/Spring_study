@@ -1,6 +1,8 @@
 package com.jpa.bookmanager.repository;
 
+import com.jpa.bookmanager.domain.Gender;
 import com.jpa.bookmanager.domain.User;
+import com.jpa.bookmanager.domain.UserHistory;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserHistoryRepository userHistoryRepository;
 
     @Test
     void crud(){
@@ -146,4 +151,25 @@ class UserRepositoryTest {
 
         System.out.println(userRepository.findById(1L).orElseThrow(RuntimeException::new));
     }
+
+    @Test
+    void userRelationTest(){
+//        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        User user = new User();
+        user.setName("litje");
+        user.setEmail("test@gmail.com");
+        user.setGender(Gender.FEMALE);
+        userRepository.save(user);
+
+        user.setEmail("litje@gmail.com");
+        userRepository.save(user);
+
+        userHistoryRepository.findAll().forEach(System.out::println);
+//        List<UserHistory> result = userHistoryRepository.findByUserId(
+//                userRepository.findByEmail("litje@gmail.com").getId());  1:N 관계 연결 후에 아래와 같이 간단하게 작성 가능
+        List<UserHistory> result = userRepository.findByEmail("litje@gmail.com").getUserHistories();
+
+        result.forEach(System.out::println);
+    }
+
 }

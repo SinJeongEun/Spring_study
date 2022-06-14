@@ -1,15 +1,10 @@
 package com.jpa.bookmanager.domain;
-
-
-import com.jpa.bookmanager.domain.listener.Auditable;
 import com.jpa.bookmanager.domain.listener.UserEntityListener;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +14,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Entity
-@Table(name = "myUser", indexes = {@Index(columnList = "name")}, uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+@Table(name = "myUser")
 @EntityListeners(value = {UserEntityListener.class})
 public class User extends BaseEntity{
     @Id //User 테이블의 pk임을 선언
@@ -32,23 +27,17 @@ public class User extends BaseEntity{
     @NonNull
     private String email;
 
-//    @Column(updatable = false)
-//    @CreatedDate
-//    private LocalDateTime createAt;
-//
-////    @Column(insertable = false)
-//    @LastModifiedDate
-//    private LocalDateTime updateAt;
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
 
-    //entity listener
-//    @PrePersist
-//    public void prePersist(){
-//        this.createAt = LocalDateTime.now();
-//        this.updateAt = LocalDateTime.now();
-//    }
-//
-//    @PreUpdate
-//    public void preUpdate(){
-//        this.updateAt = LocalDateTime.now();
-//    }
+    @OneToMany(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @JoinColumn(name = "user_id", insertable = false, updatable = false) // userhistory는 read only 이여야 하기 때문에
+    private List<UserHistory> userHistories = new ArrayList<>();
+
+    @OneToMany
+    @ToString.Exclude
+    @JoinColumn(name = "user_id")
+    private List<Review> reviews = new ArrayList<>();
+
 }

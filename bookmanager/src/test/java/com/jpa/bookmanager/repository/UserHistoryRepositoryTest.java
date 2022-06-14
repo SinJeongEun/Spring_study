@@ -1,5 +1,6 @@
 package com.jpa.bookmanager.repository;
 
+import com.jpa.bookmanager.domain.Gender;
 import com.jpa.bookmanager.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ class UserHistoryRepositoryTest {
         User user = new User();
         user.setEmail("lisa22.@gmail.com");
         user.setName("lisa22");
+//        user.setId(5L);
 
         userRepository.save(user);
 
