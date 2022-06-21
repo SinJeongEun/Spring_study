@@ -27,7 +27,6 @@ class BookRepositoryTest {
         Book book = new Book();
         book.setName("jpa 실습");
         book.setAuthorId(1L);
-//        book .setPublisherId(1L);
 
         bookRepository.save(book);
         System.out.println(bookRepository.findAll());
@@ -50,6 +49,7 @@ class BookRepositoryTest {
     }
 
     private User givenUser(){
+        userRepository.findAll().forEach(System.out::println);
         return userRepository.findByEmail("martin@naver.com");
     }
 
@@ -74,7 +74,7 @@ class BookRepositoryTest {
         review.setScore(4.5f);
         review.setUser(user);
         review.setBook(book);
-
+        System.out.println("review : " + review);
         reviewRepository.save(review);
     }
 }

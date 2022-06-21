@@ -20,7 +20,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Entity
-//@EntityListeners(value = AuditingEntityListener.class)
 public class Book extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +39,7 @@ public class Book extends BaseEntity {
     @OneToMany
     @JoinColumn(name = "book_id")
     @ToString.Exclude
+    @Builder.Default
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToOne
@@ -50,6 +50,7 @@ public class Book extends BaseEntity {
     @OneToMany
     @JoinColumn(name = "book_id")
     @ToString.Exclude
+    @Builder.Default
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
     public void addBookAndAuthor(BookAndAuthor... bookAndAuthors){

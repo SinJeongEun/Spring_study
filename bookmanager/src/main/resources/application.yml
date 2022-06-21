@@ -4,18 +4,24 @@ spring:
       enabled: true
 
   jpa:
-#    hibernate:
-#      ddl-auto: create
+    hibernate:
+      ddl-auto: create-drop
     defer-datasource-initialization: true
     show-sql: true
     properties:
       hibernate:
         format_sql:true
+    generate-ddl: true
 
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:mysql://localhost:3306/book_manager
+    username: root
     hikari:
-      username: sa
+      password:
+
+  sql:
+    init:
+      mode: always
 
 
 server:

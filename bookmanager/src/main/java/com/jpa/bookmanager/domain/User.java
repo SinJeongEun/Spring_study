@@ -33,11 +33,13 @@ public class User extends BaseEntity{
     @OneToMany(fetch = FetchType.EAGER)
     @ToString.Exclude
     @JoinColumn(name = "user_id", insertable = false, updatable = false) // userhistory는 read only 이여야 하기 때문에
+    @Builder.Default
     private List<UserHistory> userHistories = new ArrayList<>();
 
     @OneToMany
     @ToString.Exclude
     @JoinColumn(name = "user_id")
+    @Builder.Default
     private List<Review> reviews = new ArrayList<>();
 
 }
