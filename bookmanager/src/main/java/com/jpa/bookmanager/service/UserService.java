@@ -1,6 +1,7 @@
 package com.jpa.bookmanager.service;
 
 import com.jpa.bookmanager.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Transactional
     public void put(){
