@@ -6,6 +6,8 @@ import com.jpa.bookmanager.repository.AuthorRepository;
 import com.jpa.bookmanager.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -13,18 +15,36 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
+    private final AuthorService authorService;
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public void putBookAndAuthor() {
         Book book = new Book();
         book.setName("JPA 공부");
 
         bookRepository.save(book);
 
-        Author author = new Author();
-        author.setName("lisa");
+        try {
+            authorService.putAuthor();
+        }catch (RuntimeException e){
 
-        authorRepository.save(author);
+        }
+//        Author author = new Author();
+//        author.setName("lisa");
+//        authorRepository.save(author);
+
         throw new RuntimeException("예외 발생으로 RollBack");
+    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void get(Long id){
+        System.out.println(">>findById>> " + bookRepository.findById(id));
+        System.out.println(">>findAll>> " + bookRepository.findAll());
+
+        System.out.println(">>findById>> " + bookRepository.findById(id));
+        System.out.println(">>findAll>> " + bookRepository.findAll());
+        Book book = bookRepository.findById(id).get();
+        book.setName("바뀔까?");
+        bookRepository.save(book);
     }
 }
