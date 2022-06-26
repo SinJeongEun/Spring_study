@@ -42,7 +42,7 @@ public class Book extends BaseEntity {
     @Builder.Default
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) // persist, merge에 대해 publisher에 영속성을 전이하겠다.
     @ToString.Exclude
     private Publisher publisher;
 

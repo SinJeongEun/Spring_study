@@ -44,6 +44,33 @@ class BookRepositoryTest {
         System.out.println("Publisher : " + user.getReviews().get(0).getBook().getPublisher());
     }
 
+    @Test
+//    @Transactional
+    void bookCascadeTest(){
+        Book book = new Book();
+        book.setName("JPA 공부");
+
+        Publisher publisher = new Publisher();
+        publisher.setName("lisa");
+
+        book.setPublisher(publisher);
+        bookRepository.save(book);
+
+//        publisher.addBook(book);
+//        publisherRepository.save(publisher);
+//        book 에서 @ManyToOne(cascade = CascadeType.PERSIST) 설정을하여, publisher에 save 하지 않아도 연관관계를 맺어주미나 해도
+//        영속성 전이로 함께 삽입된다.
+
+        System.out.println("bookes : " + bookRepository.findAll());
+        System.out.println("publishers : " + publisherRepository.findAll());
+
+        Book book1 = bookRepository.findById(1L).get();
+        book1.getPublisher().setName("lisa2");
+        bookRepository.save(book1);
+        System.out.println(">>>  " + publisherRepository.findAll());
+    }
+
+
     private void givenBookAndReview(){
         givenReveiw(givenUser(),givenBook(givenPublisher()));
     }
