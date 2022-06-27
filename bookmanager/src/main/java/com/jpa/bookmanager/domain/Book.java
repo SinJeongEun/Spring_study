@@ -1,14 +1,7 @@
 package com.jpa.bookmanager.domain;
-
-import com.jpa.bookmanager.domain.listener.Auditable;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.print.DocFlavor;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Entity
+//@Where(clause = "deleted = false")
 public class Book extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,16 +36,17 @@ public class Book extends BaseEntity {
     @Builder.Default
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) // persist, merge에 대해 publisher에 영속성을 전이하겠다.
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}) // persist, merge에 대해 publisher에 영속성을 전이하겠다.
     @ToString.Exclude
     private Publisher publisher;
 
-//    @ManyToMany
     @OneToMany
     @JoinColumn(name = "book_id")
     @ToString.Exclude
     @Builder.Default
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
+
+    private boolean deleted;
 
     public void addBookAndAuthor(BookAndAuthor... bookAndAuthors){
         Collections.addAll(this.bookAndAuthors, bookAndAuthors);
