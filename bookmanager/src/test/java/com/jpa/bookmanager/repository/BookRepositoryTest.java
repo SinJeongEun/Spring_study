@@ -84,6 +84,14 @@ class BookRepositoryTest {
         System.out.println(">>>>  " + bookRepository.findById(1L).get().getPublisher());
     }
 
+    @Test
+    void nativeQueryTest(){
+//        bookRepository.findAll().forEach(System.out::println);
+//        bookRepository.findAllCustom().forEach(System.out::println);
+
+        bookRepository.updateCategories();
+        bookRepository.findAll().forEach(System.out::println);
+    }
     private void givenBookAndReview(){
         givenReveiw(givenUser(),givenBook(givenPublisher()));
     }
