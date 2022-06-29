@@ -17,8 +17,8 @@ insert into my_User (`id`,`name`,`email`,`create_at`,`update_at`)  values(5,'mar
 
 insert into publisher(`id`,`name`) values (1,'lisa');
 
-insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`) values (2,'jpa2', 1,false,now(),now());
-insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`) values (3,'jpq3', 1,true,now(),now());
-insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`) values (1,'JPA1', 1,false,now(),now());
+insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`, status) values (2,'jpa2', 1,false,now(),now(), 100);
+insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`, status) values (3,'jpq3', 1,false ,now(),now(), 200);
+insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`, status) values (1,'JPA1', 1,false,now(),now(), 100);
 
 

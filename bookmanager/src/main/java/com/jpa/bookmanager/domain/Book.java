@@ -1,4 +1,6 @@
 package com.jpa.bookmanager.domain;
+import com.jpa.bookmanager.domain.converter.BookStatusConverter;
+import com.jpa.bookmanager.domain.dto.BookStatus;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
@@ -48,6 +50,10 @@ public class Book extends BaseEntity {
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
     private boolean deleted;
+
+    @Convert(converter = BookStatusConverter.class) // 어떤 converter 와 연결되는지 명시한다.
+    private BookStatus status; //판매 상태
+
 
     public void addBookAndAuthor(BookAndAuthor... bookAndAuthors){
         Collections.addAll(this.bookAndAuthors, bookAndAuthors);

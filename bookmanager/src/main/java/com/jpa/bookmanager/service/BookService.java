@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -46,5 +48,14 @@ public class BookService {
         Book book = bookRepository.findById(id).get();
         book.setName("바뀔까?");
         bookRepository.save(book);
+    }
+
+    @Transactional
+    public List<Book> getAll() {
+        List<Book> books = bookRepository.findAll();
+
+        books.forEach(System.out::println);
+
+        return books;
     }
 }
