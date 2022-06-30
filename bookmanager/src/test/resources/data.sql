@@ -21,4 +21,10 @@ insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`,
 insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`, status) values (3,'jpq3', 1,false ,now(),now(), 200);
 insert into book(`id`,`name`,`publisher_id`, `deleted`, `create_at`,`update_at`, status) values (1,'JPA1', 1,false,now(),now(), 100);
 
+insert into review(`id`, `title`, `content`, `score`, `user_id`, `book_id`) values (1, "책 1", "너무 좋았어요", 5.0, 1, 1);
+insert into review(`id`, `title`, `content`, `score`, `user_id`, `book_id`) values (2, "책 2", "별로였어요", 2.0, 2, 2);
+
+insert into comment(`id`, `comment`, `review_id`) values (1, "댓글1", 1);
+insert into comment(`id`, `comment`, `review_id`) values (2, "댓글2", 1);
+insert into comment(`id`, `comment`, `review_id`) values (3, "댓글3", 2);
 
