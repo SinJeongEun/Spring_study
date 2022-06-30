@@ -12,6 +12,7 @@ public class BookStatusConverter implements AttributeConverter<BookStatus, Integ
     // 자바 객체 -> db
     public Integer convertToDatabaseColumn(BookStatus attribute) {
         return attribute.getCode();
+//        return null;
     }
 
     @Override

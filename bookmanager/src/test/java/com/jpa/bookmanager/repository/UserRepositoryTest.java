@@ -1,5 +1,6 @@
 package com.jpa.bookmanager.repository;
 
+import com.jpa.bookmanager.domain.Address;
 import com.jpa.bookmanager.domain.Gender;
 import com.jpa.bookmanager.domain.User;
 import com.jpa.bookmanager.domain.UserHistory;
@@ -171,6 +172,22 @@ class UserRepositoryTest {
         List<UserHistory> result = userRepository.findByEmail("litje@gmail.com").getUserHistories();
 
         result.forEach(System.out::println);
+    }
+
+    @Test
+    void embedTest() {
+        userRepository.findAll().forEach(System.out::println);
+
+        User user = new User();
+        user.setName("litze");
+        user.setHomeAddress(new Address("경기도","부천시","소사로123","83939393"));
+        user.setCompanyAddress(new Address("서울시","강남구","강남대로 123", "9876"));
+        userRepository.save(user);
+
+        userRepository.findAll().forEach(System.out::println);
+        userHistoryRepository.findAll().forEach(System.out::println);
+
+
     }
 
 }
