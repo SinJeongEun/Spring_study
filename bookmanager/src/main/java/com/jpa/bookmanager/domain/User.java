@@ -48,7 +48,7 @@ public class User extends BaseEntity{
     })
     private Address companyAddress;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     @ToString.Exclude
     @JoinColumn(name = "user_id", insertable = false, updatable = false) // userhistory는 read only 이여야 하기 때문에
     @Builder.Default

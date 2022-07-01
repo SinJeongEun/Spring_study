@@ -40,6 +40,7 @@ public class UserHistory extends BaseEntity {
     private Address companyAddress;
 
     @ManyToOne // 양방향 연결로, userHistory 에서도 user을 가져올 수 있다.
+//    @ManyToOne(fetch = FetchType.LAZY) // 양방향 연결로, userHistory 에서도 user을 가져올 수 있다.
     @ToString.Exclude
     private User user;
 }

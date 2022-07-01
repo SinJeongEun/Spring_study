@@ -19,6 +19,7 @@ public class BookReviewInfo extends BaseEntity{
     private Long id;
 
     @OneToOne(optional = false) // null을 허용하지 않겠다는 의미
+    @ToString.Exclude
     private Book book;
 
     private float averageReviewScore;  //primitive 타입으로 자동으로 not null 조건으로 컬럼이 생성된다. wrpper 클래스는 null 혀용

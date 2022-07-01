@@ -24,17 +24,17 @@ public class Review extends BaseEntity{
 
     private float score;
 
-    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private User user;
 
 
-    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Book book;
 
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     @JoinColumn(name = "review_id")
     private List<Comment> comments;
 }
