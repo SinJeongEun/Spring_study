@@ -1,5 +1,5 @@
 - [**DI Dependency Injection**](https://github.com/SinJeongEun/Spring_study/blob/master/src/com/company/ioc/Main.java)
-  장점 : 
+  장점 
     - 의존성으로 부터 격리시켜 코드 테스트에 용이하다.
     - DI를 통하여, 불가능한 상황을 Mock와 같은 기술을 통하여 안정   적인 테스트가 가능하다.
     - 코드를 확장하거나 변경 할 때 영향을 최소화 한다:추상화
